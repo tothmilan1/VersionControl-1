@@ -19,7 +19,7 @@ namespace InventoryManager
 
         private void btnSaveAdd_Click(object sender, EventArgs e)
         {
-
+            //mentés
         }
     }
 }

@@ -19,7 +19,7 @@ namespace InventoryManager
 
         private void buttonSaveOverride_Click(object sender, EventArgs e)
         {
-
+            //mentés
         }
     }
 }

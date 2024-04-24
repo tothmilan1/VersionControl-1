@@ -79,14 +79,19 @@ namespace InventoryManager
 
         private void UpdateDataGridView()
         {
-            if (listBoxProduct.SelectedIndex == -1) // Show all products if no item is selected in listBoxProduct
+            if (listBoxProduct.SelectedIndex == -1 && listBoxCategory.SelectedIndex == -1)
             {
                 dataGridView.DataSource = filteredProducts;
             }
-            else
+            else if (listBoxProduct.SelectedIndex != -1)
             {
                 string productName = ((Product)listBoxProduct.SelectedItem).Name;
                 dataGridView.DataSource = new List<Product> { filteredProducts.FirstOrDefault(p => p.Name == productName) };
+            }
+            else if (listBoxCategory.SelectedIndex != -1)
+            {
+                string category = listBoxCategory.SelectedItem.ToString();
+                dataGridView.DataSource = filteredProducts.Where(p => p.Category == category).ToList();
             }
         }
 
@@ -130,12 +135,20 @@ namespace InventoryManager
 
         private void textBoxCategory_TextChanged(object sender, EventArgs e)
         {
-            string catFilter = textBoxCategory.Text;
+            string filterCategory = textBoxCategory.Text.ToLower();
+            listBoxCategory.DataSource = filteredProducts
+                .Where(p => string.IsNullOrEmpty(filterCategory) || p.Category.ToLower().Contains(filterCategory))
+                .Select(p => p.Category)
+                .Distinct()
+                .ToList();
+
+            listBoxCategory.DisplayMember = "Category";
+            listBoxCategory.SelectedIndex = -1;
         }
 
         private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            UpdateDataGridView();
         }
 
         private void btnAdd_Click_1(object sender, EventArgs e)
