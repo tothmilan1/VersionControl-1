@@ -111,6 +111,7 @@
             btnSaveAdd.TabIndex = 8;
             btnSaveAdd.Text = "Hozzáadás";
             btnSaveAdd.UseVisualStyleBackColor = true;
+            btnSaveAdd.Click += btnSaveAdd_Click;
             // 
             // UcAdd
             // 

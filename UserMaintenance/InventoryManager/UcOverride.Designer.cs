@@ -111,6 +111,7 @@
             buttonSaveOverride.TabIndex = 16;
             buttonSaveOverride.Text = "Felülírás";
             buttonSaveOverride.UseVisualStyleBackColor = true;
+            buttonSaveOverride.Click += buttonSaveOverride_Click;
             // 
             // UcOverride
             // 

@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             textBoxProduct = new TextBox();
             textBoxCategory = new TextBox();
             listBoxProduct = new ListBox();
             listBoxCategory = new ListBox();
-            dataGridView1 = new DataGridView();
+            dataGridView = new DataGridView();
             panel = new Panel();
             btnAdd = new Button();
             btnOverride = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            productBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
             // 
             // textBoxProduct
@@ -45,6 +48,7 @@
             textBoxProduct.Name = "textBoxProduct";
             textBoxProduct.Size = new Size(190, 23);
             textBoxProduct.TabIndex = 0;
+            textBoxProduct.TextChanged += textBoxProduct_TextChanged;
             // 
             // textBoxCategory
             // 
@@ -62,6 +66,7 @@
             listBoxProduct.Name = "listBoxProduct";
             listBoxProduct.Size = new Size(190, 259);
             listBoxProduct.TabIndex = 2;
+            listBoxProduct.SelectedIndexChanged += listBoxProduct_SelectedIndexChanged;
             // 
             // listBoxCategory
             // 
@@ -71,15 +76,16 @@
             listBoxCategory.Name = "listBoxCategory";
             listBoxCategory.Size = new Size(190, 259);
             listBoxCategory.TabIndex = 3;
+            listBoxCategory.SelectedIndexChanged += listBoxCategory_SelectedIndexChanged;
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(240, 26);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(392, 609);
-            dataGridView1.TabIndex = 4;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Location = new Point(240, 26);
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowTemplate.Height = 25;
+            dataGridView.Size = new Size(392, 609);
+            dataGridView.TabIndex = 4;
             // 
             // panel
             // 
@@ -117,14 +123,15 @@
             Controls.Add(btnOverride);
             Controls.Add(btnAdd);
             Controls.Add(panel);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridView);
             Controls.Add(listBoxCategory);
             Controls.Add(listBoxProduct);
             Controls.Add(textBoxCategory);
             Controls.Add(textBoxProduct);
             Name = "Form1";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -135,9 +142,10 @@
         private TextBox textBoxCategory;
         private ListBox listBoxProduct;
         private ListBox listBoxCategory;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView;
         private Panel panel;
         private Button btnAdd;
         private Button btnOverride;
+        private BindingSource productBindingSource;
     }
 }

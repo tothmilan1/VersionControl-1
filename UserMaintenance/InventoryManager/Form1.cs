@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -51,6 +52,7 @@ namespace InventoryManager
 
         }
 
+        //placeholder amíg ki nem találom az API-t
 
         private List<Product> productTest = new List<Product>
         {
@@ -60,18 +62,48 @@ namespace InventoryManager
             new Product { Name = "Product 4", Category = "Category C", ReservedInventory = 15, QuantityOnHand = 30, LowStock = 10, OutOfStock = 5 }
         };
 
+        private List<Product> filteredProducts;
+
         private UserControl currentControl;
 
         public Form1()
         {
             InitializeComponent();
 
-            LoadProducts();
+            listBoxProduct.SelectedIndex = -1;
+            listBoxCategory.SelectedIndex = -1;
+
+            filteredProducts = productTest.ToList();
+            UpdateDataGridView();
         }
 
-        private void LoadProducts()
+        private void UpdateDataGridView()
         {
-            dataGridView1.DataSource = productTest;
+            if (listBoxProduct.SelectedIndex == -1) // Show all products if no item is selected in listBoxProduct
+            {
+                dataGridView.DataSource = filteredProducts;
+            }
+            else
+            {
+                string productName = ((Product)listBoxProduct.SelectedItem).Name;
+                dataGridView.DataSource = new List<Product> { filteredProducts.FirstOrDefault(p => p.Name == productName) };
+            }
+        }
+
+        private void textBoxProduct_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = textBoxProduct.Text.ToLower();
+            listBoxProduct.DataSource = filteredProducts
+                .Where(p => string.IsNullOrEmpty(filterText) || p.Name.ToLower().Contains(filterText))
+                .ToList();
+
+            listBoxProduct.DisplayMember = "Name";
+            listBoxProduct.SelectedIndex = -1;
+        }
+
+        private void listBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDataGridView();
         }
 
         private void SwitchToOverrideControl()
@@ -101,6 +133,11 @@ namespace InventoryManager
             string catFilter = textBoxCategory.Text;
         }
 
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             SwitchToAddControl();
@@ -110,5 +147,7 @@ namespace InventoryManager
         {
             SwitchToOverrideControl();
         }
+
+
     }
 }

@@ -16,5 +16,10 @@ namespace InventoryManager
         {
             InitializeComponent();
         }
+
+        private void btnSaveAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
