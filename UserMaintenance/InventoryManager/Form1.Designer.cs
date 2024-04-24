@@ -38,6 +38,8 @@
             btnAdd = new Button();
             btnOverride = new Button();
             productBindingSource = new BindingSource(components);
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
@@ -80,6 +82,7 @@
             // 
             // dataGridView
             // 
+            dataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Location = new Point(240, 26);
             dataGridView.Name = "dataGridView";
@@ -89,6 +92,7 @@
             // 
             // panel
             // 
+            panel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel.Location = new Point(667, 55);
             panel.Name = "panel";
             panel.Size = new Size(419, 364);
@@ -96,6 +100,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAdd.Location = new Point(667, 25);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(135, 23);
@@ -106,6 +111,7 @@
             // 
             // btnOverride
             // 
+            btnOverride.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnOverride.Location = new Point(808, 25);
             btnOverride.Name = "btnOverride";
             btnOverride.Size = new Size(135, 23);
@@ -114,12 +120,32 @@
             btnOverride.UseVisualStyleBackColor = true;
             btnOverride.Click += btnOverride_Click_1;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(21, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Termék szűrő:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(20, 325);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Kategória szűrő:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1122, 658);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(btnOverride);
             Controls.Add(btnAdd);
             Controls.Add(panel);
@@ -147,5 +173,7 @@
         private Button btnAdd;
         private Button btnOverride;
         private BindingSource productBindingSource;
+        private Label label1;
+        private Label label2;
     }
 }
